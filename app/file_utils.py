@@ -37,6 +37,35 @@ def actualizar_nota_excel(ruta_excel, alumno_nombre, materia, nota):
     except Exception as e:
         return f"❌ Hubo un problema con el Excel: {str(e)}"
 
+def eliminar_archivo(ruta):
+    """Elimina un archivo del servidor de forma segura."""
+    try:
+        if os.path.exists(ruta):
+            os.remove(ruta)
+            return True
+        return False
+    except Exception:
+        return False
+
+def leer_texto_word(ruta_word):
+    """Extrae el texto de un archivo Word para previsualización de forma segura."""
+    if not os.path.exists(ruta_word):
+        return f"⚠️ Error: El archivo {ruta_word} no se encontró en el servidor."
+    
+    try:
+        doc = Document(ruta_word)
+        texto_completo = []
+        for para in doc.paragraphs:
+            if para.text.strip():
+                texto_completo.append(para.text)
+        
+        if not texto_completo:
+            return "El documento parece estar vacío o solo contiene tablas/imágenes que no se pueden previsualizar aquí."
+            
+        return "\n\n".join(texto_completo)
+    except Exception as e:
+        return f"❌ No se pudo cargar la previsualización: {str(e)}"
+
 def generar_word_planeamiento(datos, carpeta_salida="data/output"):
     """Crea un documento Word extenso y profesional."""
     tema_original = datos.get("tema", "Tema General")

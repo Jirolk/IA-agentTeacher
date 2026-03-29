@@ -13,6 +13,8 @@ venv/
 data/output/*
 !data/output/.gitkeep
 notas.md
+*.log
+errores_criticos.txt
 
 # OS
 .DS_Store

@@ -1,10 +1,15 @@
 import streamlit as st
 import json
 import os
+import sys
 import logging
 from datetime import datetime
+
+# Asegurar que el directorio app está en el path para las importaciones locales
+sys.path.append(os.path.dirname(__file__))
+
 from ai_logic import transcribir_audio, procesar_peticion_texto
-from file_utils import generar_word_planeamiento, actualizar_nota_excel
+from file_utils import generar_word_planeamiento, actualizar_nota_excel, leer_texto_word, eliminar_archivo
 
 # Configuración de Logging para DEBUG
 logging.basicConfig(
@@ -14,6 +19,29 @@ logging.basicConfig(
 )
 
 st.set_page_config(page_title="ADI - Tu Asistente Docente", page_icon="👩‍🏫", layout="wide")
+
+# --- FUNCIONES DE GESTIÓN ---
+def listar_archivos(carpeta="data/output"):
+    if not os.path.exists(carpeta):
+        return []
+    # Ordenamos por fecha de modificación para que los más nuevos salgan arriba
+    archivos = [f for f in os.listdir(carpeta) if f.endswith(".docx")]
+    archivos.sort(key=lambda x: os.path.getmtime(os.path.join(carpeta, x)), reverse=True)
+    return archivos
+
+@st.dialog("📝 Revisando el Plan de Clase")
+def mostrar_plan_modal(ruta, nombre):
+    st.write(f"**Archivo:** {nombre}")
+    texto_preview = leer_texto_word(ruta)
+    st.text_area("Contenido del documento:", texto_preview, height=400)
+    
+    col1, col2 = st.columns(2)
+    with col1:
+        with open(ruta, "rb") as f:
+            st.download_button("📥 GUARDAR EN MI PC", f, file_name=nombre, use_container_width=True)
+    with col2:
+        if st.button("Cerrar", use_container_width=True):
+            st.rerun()
 
 def log_error(mensaje, error, contexto=None):
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -141,6 +169,10 @@ with col_mid:
     if st.session_state.descarga_info:
         ruta, nombre = st.session_state.descarga_info
         if os.path.exists(ruta):
+            st.markdown("### 📝 Previsualización del Plan")
+            texto_preview = leer_texto_word(ruta)
+            st.text_area("Contenido del documento:", texto_preview, height=300)
+            
             with open(ruta, "rb") as f:
                 st.download_button("📥 GUARDAR ARCHIVO", f, file_name=nombre)
         else:
@@ -148,7 +180,30 @@ with col_mid:
 
 if os.path.exists("debug_adi.log"):
     with st.sidebar:
+        st.header("📚 Planes Guardados")
+        st.write("Aquí puede ver o borrar los trabajos que ya ha realizado anteriormente.")
+        
+        archivos = listar_archivos()
+        if archivos:
+            # Selector con nombre claro
+            archivo_sel = st.selectbox("¿Qué plan desea revisar?", archivos, help="Seleccione un archivo de la lista")
+            ruta_sel = os.path.join("data/output", archivo_sel)
+            
+            st.write("---")
+            # Botones grandes y claros
+            if st.button("🔍 VER CONTENIDO", use_container_width=True):
+                mostrar_plan_modal(ruta_sel, archivo_sel)
+            
+            if st.button("🗑️ BORRAR ESTE PLAN", use_container_width=True):
+                if eliminar_archivo(ruta_sel):
+                    st.success("¡Borrado con éxito!")
+                    if st.session_state.descarga_info and st.session_state.descarga_info[0] == ruta_sel:
+                        st.session_state.descarga_info = None
+                    st.rerun()
+        else:
+            st.info("Aún no tiene planes guardados. ¡Cree uno nuevo hablando con ADI!")
+
         st.divider()
-        if st.checkbox("Ver Registro Técnico (Logs)"):
+        if st.checkbox("⚙️ Configuración Avanzada (Logs)"):
             with open("debug_adi.log", "r") as f:
-                st.text(f.readlines()[-20:]) # Mostrar últimas 20 líneas
+                st.text(f.readlines()[-20:])
