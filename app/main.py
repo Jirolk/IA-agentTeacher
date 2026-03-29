@@ -80,6 +80,7 @@ def borrar_todo():
     st.session_state.area_texto_profe = ""
     st.session_state.ultimo_audio_id = None
     st.session_state.descarga_info = None
+    st.session_state.mensaje_nota = None
     logging.info("Sesión reiniciada por el usuario.")
 
 if 'area_texto_profe' not in st.session_state:
@@ -88,6 +89,8 @@ if 'ultimo_audio_id' not in st.session_state:
     st.session_state.ultimo_audio_id = None
 if 'descarga_info' not in st.session_state:
     st.session_state.descarga_info = None
+if 'mensaje_nota' not in st.session_state:
+    st.session_state.mensaje_nota = None
 
 # Lista de formatos de audio soportados por Gemini
 FORMATOS_SOPORTADOS = [
@@ -167,7 +170,7 @@ st.title("👩‍🏫 ¡Hola, Profe!")
 col_izq, col_der = st.columns([1, 1], gap="large")
 
 with col_izq:
-    st.markdown('<p class="big-text">1. Pulse el círculo para hablar:</p>', unsafe_allow_html=True)
+    st.markdown('<p class="big-text" style="margin-top:0px;">1. Pulse el círculo para hablar:</p>', unsafe_allow_html=True)
     audio_file = st.audio_input("Grabar voz")
     
     if audio_file:
@@ -192,7 +195,7 @@ with col_izq:
     
     c1, c2 = st.columns(2)
     with c1:
-        if st.button("✅ ¡HACER TRABAJO!"):
+        if st.button("✅ ¡HACER TRABAJO!", use_container_width=True):
             texto = st.session_state.area_texto_profe
             if texto.strip():
                 with st.spinner("Procesando..."):
@@ -221,13 +224,13 @@ with col_izq:
             else:
                 st.warning("Hable primero.")
     with c2:
-        st.button("🧹 BORRAR", on_click=borrar_todo)
+        st.button("🧹 BORRAR", on_click=borrar_todo, use_container_width=True)
 
 with col_der:
-    st.markdown('<p class="big-text">3. Resultado aquí debajo:</p>', unsafe_allow_html=True)
+    st.markdown('<p class="big-text" style="margin-top:0px;">3. Resultado aquí debajo:</p>', unsafe_allow_html=True)
     
     # Mostrar mensaje de nota si existe
-    if 'mensaje_nota' in st.session_state and st.session_state.mensaje_nota:
+    if st.session_state.mensaje_nota:
         st.success(st.session_state.mensaje_nota)
         if st.button("Cerrar mensaje"):
             st.session_state.mensaje_nota = None
@@ -246,7 +249,25 @@ with col_der:
         else:
             st.error("El archivo se perdió. Intente de nuevo.")
     else:
-        st.write("Esperando a que termine el paso 2...")
+        st.info("Aquí aparecerá su trabajo cuando termine el paso 2.")
+
+# --- PIE DE PÁGINA (FOOTER) ---
+st.markdown("<br><br>", unsafe_allow_html=True)
+st.markdown("---")
+st.markdown("""
+    <div style="text-align: center; color: #94A3B8; font-size: 16px; padding-bottom: 30px;">
+        Hecho con ❤️ por <b>Ing. Sandro Castillo</b><br><br>
+        <a href="https://wa.me/+595985201942" target="_blank" style="text-decoration: none; margin: 0 15px;">
+            <span style="font-size: 20px;">🟢</span> <b>WhatsApp</b>
+        </a>
+        <a href="https://linkedin.com/in/swnder" target="_blank" style="text-decoration: none; margin: 0 15px;">
+            <span style="font-size: 20px;">🔵</span> <b>LinkedIn</b>
+        </a>
+        <a href="https://instagram.com/sandrojir" target="_blank" style="text-decoration: none; margin: 0 15px;">
+            <span style="font-size: 20px;">🟠</span> <b>Instagram</b>
+        </a>
+    </div>
+    """, unsafe_allow_html=True)
 
 
 if os.path.exists("debug_adi.log"):
@@ -256,13 +277,6 @@ if os.path.exists("debug_adi.log"):
         
         archivos = listar_archivos()
         if archivos:
-            # Creamos una lista de datos para la tabla
-            datos_tabla = []
-            for f in archivos:
-                ruta = os.path.join("data/output", f)
-                fecha = datetime.fromtimestamp(os.path.getmtime(ruta)).strftime("%d/%m/%Y %H:%M")
-                datos_tabla.append({"Archivo": f, "Fecha": fecha})
-            
             # Buscador simple usando texto
             busqueda = st.text_input("🔍 Buscar plan por nombre:", placeholder="Ej: Matemáticas...")
             
@@ -283,7 +297,7 @@ if os.path.exists("debug_adi.log"):
                                     st.success("¡Borrado!")
                                     st.rerun()
             else:
-                st.warning("No se encontraron planes con ese nombre.")
+                st.warning("No se encontraron planes.")
         else:
             st.info("Aún no tiene planes guardados.")
 
