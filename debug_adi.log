@@ -1,0 +1,134 @@
+2026-03-29 01:23:47,542 - INFO - AFC is enabled with max remote calls: 10.
+2026-03-29 01:23:47,543 - DEBUG - connect_tcp.started host='generativelanguage.googleapis.com' port=443 local_address=None timeout=None socket_options=None
+2026-03-29 01:23:47,598 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000023B42A76A80>
+2026-03-29 01:23:47,599 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x0000023B25ADAA30> server_hostname='generativelanguage.googleapis.com' timeout=None
+2026-03-29 01:23:47,708 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000023B42E4C820>
+2026-03-29 01:23:47,708 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-03-29 01:23:47,732 - DEBUG - send_request_headers.complete
+2026-03-29 01:23:47,732 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-03-29 01:23:47,732 - DEBUG - send_request_body.complete
+2026-03-29 01:23:47,732 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-03-29 01:23:48,703 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 429, b'Too Many Requests', [(b'X-Gemini-Service-Tier', b'standard'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Content-Encoding', b'gzip'), (b'Date', b'Sun, 29 Mar 2026 04:23:48 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=921'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-03-29 01:23:48,703 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 429 Too Many Requests"
+2026-03-29 01:23:48,703 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-03-29 01:23:48,703 - DEBUG - receive_response_body.complete
+2026-03-29 01:23:48,703 - DEBUG - response_closed.started
+2026-03-29 01:23:48,704 - DEBUG - response_closed.complete
+2026-03-29 01:23:48,704 - DEBUG - Respuesta IA raw: Error en procesamiento: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\nPlease retry in 11.300747054s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '11s'}]}}
+2026-03-29 01:23:48,704 - ERROR - Error procesando petición: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+2026-03-29 01:23:48,793 - DEBUG - close.started
+2026-03-29 01:23:48,794 - DEBUG - close.complete
+2026-03-29 01:29:40,871 - INFO - AFC is enabled with max remote calls: 10.
+2026-03-29 01:29:40,872 - DEBUG - connect_tcp.started host='generativelanguage.googleapis.com' port=443 local_address=None timeout=None socket_options=None
+2026-03-29 01:29:41,030 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000023B42E4EAD0>
+2026-03-29 01:29:41,030 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x0000023B3FCB9950> server_hostname='generativelanguage.googleapis.com' timeout=None
+2026-03-29 01:29:41,148 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000023B42E4D220>
+2026-03-29 01:29:41,149 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-03-29 01:29:41,149 - DEBUG - send_request_headers.complete
+2026-03-29 01:29:41,149 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-03-29 01:29:41,149 - DEBUG - send_request_body.complete
+2026-03-29 01:29:41,149 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-03-29 01:29:41,460 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 429, b'Too Many Requests', [(b'X-Gemini-Service-Tier', b'standard'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Content-Encoding', b'gzip'), (b'Date', b'Sun, 29 Mar 2026 04:29:41 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=254'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-03-29 01:29:41,460 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 429 Too Many Requests"
+2026-03-29 01:29:41,460 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-03-29 01:29:41,461 - DEBUG - receive_response_body.complete
+2026-03-29 01:29:41,461 - DEBUG - response_closed.started
+2026-03-29 01:29:41,461 - DEBUG - response_closed.complete
+2026-03-29 01:29:41,461 - DEBUG - Respuesta IA raw: Error en procesamiento: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\nPlease retry in 18.5447759s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '18s'}]}}
+2026-03-29 01:29:41,461 - ERROR - Error procesando petición: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+2026-03-29 01:29:41,570 - DEBUG - close.started
+2026-03-29 01:29:41,571 - DEBUG - close.complete
+2026-03-29 14:00:54,168 - INFO - AFC is enabled with max remote calls: 10.
+2026-03-29 14:00:54,175 - DEBUG - connect_tcp.started host='generativelanguage.googleapis.com' port=443 local_address=None timeout=None socket_options=None
+2026-03-29 14:00:54,313 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000023B42E4E170>
+2026-03-29 14:00:54,314 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x0000023B42E2F430> server_hostname='generativelanguage.googleapis.com' timeout=None
+2026-03-29 14:00:54,454 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000023B25A8D310>
+2026-03-29 14:00:54,454 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-03-29 14:00:54,455 - DEBUG - send_request_headers.complete
+2026-03-29 14:00:54,455 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-03-29 14:00:54,724 - DEBUG - send_request_body.complete
+2026-03-29 14:00:54,724 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-03-29 14:00:57,023 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Sun, 29 Mar 2026 17:00:57 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=2499'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-03-29 14:00:57,024 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-03-29 14:00:57,024 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-03-29 14:00:57,025 - DEBUG - receive_response_body.complete
+2026-03-29 14:00:57,025 - DEBUG - response_closed.started
+2026-03-29 14:00:57,025 - DEBUG - response_closed.complete
+2026-03-29 14:00:57,026 - DEBUG - close.started
+2026-03-29 14:00:57,026 - DEBUG - close.complete
+2026-03-29 14:00:57,028 - INFO - Transcripción exitosa: Y ahí grabé yo. Entonces quiero un plan de clase p...
+2026-03-29 14:01:23,881 - INFO - AFC is enabled with max remote calls: 10.
+2026-03-29 14:01:23,882 - DEBUG - connect_tcp.started host='generativelanguage.googleapis.com' port=443 local_address=None timeout=None socket_options=None
+2026-03-29 14:01:23,932 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000023B42E4D810>
+2026-03-29 14:01:23,932 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x0000023B42E2F390> server_hostname='generativelanguage.googleapis.com' timeout=None
+2026-03-29 14:01:24,042 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000023B42E26FD0>
+2026-03-29 14:01:24,043 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-03-29 14:01:24,043 - DEBUG - send_request_headers.complete
+2026-03-29 14:01:24,043 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-03-29 14:01:24,043 - DEBUG - send_request_body.complete
+2026-03-29 14:01:24,043 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-03-29 14:01:29,763 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Sun, 29 Mar 2026 17:01:29 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=5661'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-03-29 14:01:29,763 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-03-29 14:01:29,763 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-03-29 14:01:29,764 - DEBUG - receive_response_body.complete
+2026-03-29 14:01:29,764 - DEBUG - response_closed.started
+2026-03-29 14:01:29,764 - DEBUG - response_closed.complete
+2026-03-29 14:01:29,765 - DEBUG - close.started
+2026-03-29 14:01:29,766 - DEBUG - close.complete
+2026-03-29 14:01:29,768 - DEBUG - Respuesta IA raw: {
+  "accion": "crear_planeamiento",
+  "datos": {
+    "tema": "La Maternidad: Un Viaje de Transformación y Responsabilidad",
+    "grado": "Noveno Grado",
+    "objetivos": [
+      "Comprender la maternidad como un proceso biológico, psicológico y social complejo.",
+      "Identificar los desafíos y responsabilidades asociados con la maternidad en diferentes contextos.",
+      "Fomentar la reflexión crítica sobre la preparación y el apoyo necesario para la maternidad.",
+      "Reconocer la importancia de la educación sexual integral y la planificación familiar en relación con la maternidad."
+    ],
+    "inicio": "El docente iniciará la clase preguntando: '¿Qué ideas se les vienen a la mente cuando piensan en la palabra 'maternidad'?'. Se realizará una lluvia de ideas en la pizarra o en una herramienta digital colaborativa. Luego, se presentará un breve video (2-3 minutos) que muestre diferentes facetas de la maternidad (desde la alegría hasta los desafíos cotidianos), sin idealizarla ni demonizarla. Se abrirá un espacio para que los estudiantes compartan sus primeras impresiones y sentimientos sobre el video.",
+    "desarrollo": "1. **Mesa Redonda guiada:** Se dividirá la clase en pequeños grupos y se les asignarán diferentes aspectos para investigar y discutir sobre la maternidad (ej. Aspectos biológicos del embarazo y parto, Cambios emocionales y psicológicos, Responsabilidades económicas y sociales, Mitos y realidades de la maternidad, Maternidad adolescente). Cada grupo preparará una breve exposición de 5 minutos. 2. **Casos de Estudio:** Se presentarán 2-3 casos de estudio anónimos (ficticios o basados en situaciones generales) que planteen dilemas o desafíos relacionados con la maternidad (ej. una madre adolescente, una madre soltera, una madre que decide retrasar la maternidad por su carrera). Los grupos analizarán los casos y propondrán soluciones o reflexiones. 3. **Recursos de Apoyo:** Se introducirán recursos de apoyo para la maternidad responsable y planificada, incluyendo información sobre salud sexual y reproductiva, métodos anticonceptivos, y programas de apoyo a jóvenes y nuevas madres en la comunidad.",
+    "cierre": "Se realizará una plenaria donde cada grupo compartirá las conclusiones de su caso de estudio y las reflexiones más importantes. Se enfatizará la idea de que la maternidad es una decisión importante que requiere preparación, apoyo y responsabilidad. Se abrirá un debate sobre la importancia de la educación sexual integral y el rol de la sociedad en el apoyo a las madres y familias. Se asignará como tarea la redacción de un ensayo corto (una página) titulado 'La Maternidad en el Siglo XXI: Mis Reflexiones y Desafíos'.",
+    "recursos": [
+      "Pizarra o herramienta de colaboración digital (Padlet, Jamboard)",
+      "Video corto introductorio sobre la maternidad (ej. documental o campaña social)",
+      "Materiales de lectura o infografías sobre aspectos biológicos, psicológicos y sociales de la maternidad",
+      "Fichas con casos de estudio anónimos",
+      "Información sobre recursos de salud sexual y reproductiva (folletos, enlaces a sitios web confiables)",
+      "Pizarra para la lluvia de ideas"
+    ],
+    "indicadores": [
+      "Participa activamente en la lluvia de ideas inicial y en las discusiones grupales.",
+      "Identifica al menos tres aspectos biológicos, psicológicos y sociales de la maternidad.",
+      "Analiza críticamente los casos de estudio, proponiendo reflexiones fundamentadas.",
+      "Demuestra comprensión de la importancia de la planificación familiar y los recursos de apoyo.",
+      "Presenta un ensayo escrito que reflexiona sobre la maternidad con argumentos claros y coherentes."
+    ]
+  }
+}
+2026-03-29 14:01:29,912 - INFO - Archivo generado: data/output\Plan_Detallado_La_Maternidad_Un_Viaje_de_Transformación_y_Responsabilidad.docx
+2026-03-29 14:09:20,148 - INFO - Sesión reiniciada por el usuario.
+2026-03-29 14:09:22,209 - INFO - AFC is enabled with max remote calls: 10.
+2026-03-29 14:09:22,222 - DEBUG - connect_tcp.started host='generativelanguage.googleapis.com' port=443 local_address=None timeout=None socket_options=None
+2026-03-29 14:09:22,328 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000023B42A4F3E0>
+2026-03-29 14:09:22,328 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x0000023B41F64370> server_hostname='generativelanguage.googleapis.com' timeout=None
+2026-03-29 14:09:22,466 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000023B41A28960>
+2026-03-29 14:09:22,467 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-03-29 14:09:22,468 - DEBUG - send_request_headers.complete
+2026-03-29 14:09:22,468 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-03-29 14:09:22,805 - DEBUG - send_request_body.complete
+2026-03-29 14:09:22,805 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-03-29 14:09:24,931 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Sun, 29 Mar 2026 17:09:24 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=2348'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-03-29 14:09:24,932 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-03-29 14:09:24,932 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-03-29 14:09:24,935 - DEBUG - receive_response_body.complete
+2026-03-29 14:09:24,935 - DEBUG - response_closed.started
+2026-03-29 14:09:24,936 - DEBUG - response_closed.complete
+2026-03-29 14:09:24,939 - DEBUG - close.started
+2026-03-29 14:09:24,940 - DEBUG - close.complete
+2026-03-29 14:09:24,943 - INFO - Transcripción exitosa: y graba yo. Entonces quiero un plan de clases para...
+2026-03-29 14:09:34,046 - DEBUG - Popen(['git', 'version'], cwd=D:\Desarrollos\IA-agentTeacher, stdin=None, shell=False, universal_newlines=False)
+2026-03-29 14:09:34,130 - DEBUG - Popen(['git', 'version'], cwd=D:\Desarrollos\IA-agentTeacher, stdin=None, shell=False, universal_newlines=False)
+2026-03-29 14:09:34,187 - DEBUG - sys.platform='win32', git_executable='git'
+2026-03-29 14:09:34,191 - DEBUG - Popen(['git', 'version'], cwd=D:\Desarrollos\IA-agentTeacher, stdin=None, shell=False, universal_newlines=False)
+2026-03-29 14:09:34,249 - DEBUG - Popen(['git', 'rev-parse', '--show-toplevel'], cwd=D:\Desarrollos\IA-agentTeacher, stdin=None, shell=False, universal_newlines=False)

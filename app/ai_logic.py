@@ -1,53 +1,71 @@
 import os
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 from dotenv import load_dotenv
 
 load_dotenv()
 
-# Configuración básica de Gemini
-api_key = os.getenv("GOOGLE_API_KEY")
-if api_key:
-    genai.configure(api_key=api_key)
+def get_client():
+    return genai.Client(api_key=os.getenv("GOOGLE_API_KEY"))
 
+# Instrucciones para el razonamiento superior de Gemini 2.5
 SYSTEM_PROMPT = """
-Eres ADI (Asistente Docente Inteligente), un secretario pedagógico diseñado para ayudar a una 
-profesora de 63 años con sus tareas administrativas. 
-Tu objetivo es ser amable, paciente y simplificar todo.
+Eres ADI 2.5, un asistente pedagógico de última generación.
+Tu salida debe ser exclusivamente JSON válido.
 
-Tu tarea principal es interpretar sus peticiones y convertirlas en datos estructurados.
-Acciones soportadas:
-1. 'actualizar_nota': Para cargar notas en Excel.
-2. 'crear_planeamiento': Para generar un Word con el plan de clase.
-3. 'consultar_datos': Para buscar información en sus registros.
-
-Si ella dice algo como: "Hoy Juan Pérez sacó un 9 en matemáticas", 
-debes responder ÚNICAMENTE en formato JSON como este:
-{
-  "accion": "actualizar_nota",
-  "datos": {
-    "alumno": "Juan Pérez",
-    "materia": "matemáticas",
-    "nota": 9
-  }
-}
-
-Si ella pide un plan de clase: "Necesito un plan sobre el sistema solar para 4to grado", responde:
+Si la orden es un plan de clase:
 {
   "accion": "crear_planeamiento",
   "datos": {
-    "tema": "sistema solar",
-    "grado": "4to grado"
+    "tema": "Título",
+    "grado": "Grado",
+    "objetivos": ["..."],
+    "inicio": "...",
+    "desarrollo": "...",
+    "cierre": "...",
+    "recursos": ["..."],
+    "indicadores": ["..."]
   }
 }
 
-Si no entiendes o falta información, pide amablemente los detalles.
+Si la orden es una nota:
+{
+  "accion": "actualizar_nota",
+  "datos": {
+    "alumno": "Nombre",
+    "materia": "Materia",
+    "nota": 0
+  }
+}
 """
 
-def procesar_peticion(texto):
-    model = genai.GenerativeModel('gemini-1.5-flash', 
-                                  system_instruction=SYSTEM_PROMPT)
+def transcribir_audio(audio_bytes, mime_type):
+    client = get_client()
     try:
-        response = model.generate_content(texto)
+        # Usando el motor 2.5 para una transcripción perfecta
+        response = client.models.generate_content(
+            model='gemini-2.5-flash',
+            contents=[
+                "Escribe exactamente lo que dice el audio, sin añadir nada:",
+                types.Part.from_bytes(data=audio_bytes, mime_type=mime_type)
+            ]
+        )
+        return response.text.strip()
+    except Exception as e:
+        return f"Error en transcripción: {str(e)}"
+
+def procesar_peticion_texto(texto):
+    client = get_client()
+    try:
+        # Procesamiento avanzado con Gemini 2.5 Flash
+        response = client.models.generate_content(
+            model='gemini-2.5-flash',
+            contents=texto,
+            config=types.GenerateContentConfig(
+                system_instruction=SYSTEM_PROMPT,
+                response_mime_type='application/json'
+            )
+        )
         return response.text
     except Exception as e:
-        return f"Error al conectar con la IA: {str(e)}"
+        return f"Error en procesamiento: {str(e)}"

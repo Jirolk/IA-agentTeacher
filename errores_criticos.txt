@@ -1,0 +1,2 @@
+2026-03-29 01:23:48.704661 - Error procesando petición: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+2026-03-29 01:29:41.461713 - Error procesando petición: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
