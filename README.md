@@ -67,7 +67,6 @@ Para ejecutar ADI en tu computadora necesitas:
     *   `output/`: Carpeta donde se guardan los planes generados.
 *   `Iniciar ADI.vbs`: Lanzador invisible para Windows.
 *   `run_adi.bat`: Script de arranque y configuración automática.
-*   `notas.md`: Diario de cambios y estado actual del proyecto.
 
 ---
 
