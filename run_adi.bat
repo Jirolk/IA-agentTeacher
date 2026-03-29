@@ -11,12 +11,15 @@ if not exist venv (
     python -m venv venv
     call venv\Scripts\activate
     python -m pip install --upgrade pip
-    pip install -r requirements.txt
+    pip install -r requirements.txt --quiet
 ) else (
     call venv\Scripts\activate
 )
 
-:: Iniciar Streamlit en segundo plano y abrir navegador
+:: Forzar la instalacion de la libreria de Google si falta
+pip install google-genai --quiet
+
+:: Iniciar Streamlit con la ruta absoluta de main.py
 echo Abriendo ADI en su navegador...
 start "" http://localhost:8501
 streamlit run app/main.py --server.port 8501 --server.headless true

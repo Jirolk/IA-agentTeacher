@@ -4,14 +4,21 @@ import os
 import sys
 import logging
 from datetime import datetime
-
 import subprocess
 
-# Asegurar que el directorio app está en el path para las importaciones locales
-sys.path.append(os.path.dirname(__file__))
+# Configuración de rutas para que funcione desde cualquier lugar (.vbs o .bat)
+directorio_actual = os.path.dirname(os.path.abspath(__file__))
+if directorio_actual not in sys.path:
+    sys.path.append(directorio_actual)
 
-from ai_logic import transcribir_audio, procesar_peticion_texto, get_client
-from file_utils import generar_word_planeamiento, actualizar_nota_excel, leer_texto_word, eliminar_archivo
+# Importar funciones de lógica local
+try:
+    from ai_logic import transcribir_audio, procesar_peticion_texto
+    from file_utils import generar_word_planeamiento, actualizar_nota_excel, leer_texto_word, eliminar_archivo
+except ImportError:
+    # Intento de respaldo si se ejecuta desde fuera de app/
+    from app.ai_logic import transcribir_audio, procesar_peticion_texto
+    from app.file_utils import generar_word_planeamiento, actualizar_nota_excel, leer_texto_word, eliminar_archivo
 
 # --- FUNCIONES DE ACTUALIZACIÓN ---
 def buscar_actualizaciones():
