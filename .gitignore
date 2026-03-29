@@ -1,0 +1,19 @@
+# Docker
+Dockerfile
+docker-compose.yml
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+
+# Datos y Notas (Privado)
+data/output/*
+!data/output/.gitkeep
+notas.md
+
+# OS
+.DS_Store
+Thumbs.db
