@@ -5,11 +5,27 @@ import sys
 import logging
 from datetime import datetime
 
+import subprocess
+
 # Asegurar que el directorio app está en el path para las importaciones locales
 sys.path.append(os.path.dirname(__file__))
 
-from ai_logic import transcribir_audio, procesar_peticion_texto
+from ai_logic import transcribir_audio, procesar_peticion_texto, get_client
 from file_utils import generar_word_planeamiento, actualizar_nota_excel, leer_texto_word, eliminar_archivo
+
+# --- FUNCIONES DE ACTUALIZACIÓN ---
+def buscar_actualizaciones():
+    try:
+        # Ejecutamos git pull para traer cambios
+        resultado = subprocess.run(["git", "pull"], capture_output=True, text=True, check=True)
+        if "Already up to date" in resultado.stdout:
+            return "✅ El sistema ya está actualizado.", False
+        else:
+            # Si hubo cambios, intentamos actualizar librerías por si acaso
+            subprocess.run(["pip", "install", "-r", "requirements.txt"], capture_output=True)
+            return f"🚀 ¡Sistema actualizado con éxito! Reanudando...", True
+    except Exception as e:
+        return f"❌ Error al actualizar: {str(e)}", False
 
 # Configuración de Logging para DEBUG
 logging.basicConfig(
@@ -204,6 +220,19 @@ if os.path.exists("debug_adi.log"):
             st.info("Aún no tiene planes guardados. ¡Cree uno nuevo hablando con ADI!")
 
         st.divider()
-        if st.checkbox("⚙️ Configuración Avanzada (Logs)"):
-            with open("debug_adi.log", "r") as f:
-                st.text(f.readlines()[-20:])
+        if st.checkbox("⚙️ Configuración Avanzada"):
+            st.write("**Herramientas del Sistema**")
+            if st.button("🔄 BUSCAR ACTUALIZACIONES", use_container_width=True):
+                with st.spinner("Conectando con el servidor..."):
+                    msg, reboot = buscar_actualizaciones()
+                    if reboot:
+                        st.success(msg)
+                        st.info("Reiniciando para aplicar cambios...")
+                        st.rerun()
+                    else:
+                        st.info(msg)
+            
+            st.write("---")
+            if st.checkbox("Ver Registro Técnico (Logs)"):
+                with open("debug_adi.log", "r") as f:
+                    st.text(f.readlines()[-20:])
