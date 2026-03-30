@@ -30,7 +30,7 @@ Para ejecutar ADI en tu computadora necesitas:
 
 1.  **Clonar el repositorio:**
     ```bash
-    git clone https://github.com/Jirolk/IA-agentTeacher.git
+    git clone https://github.com/Jirolk/ADI2.5.git
     cd IA-agentTeacher
     ```
 
